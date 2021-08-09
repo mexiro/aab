@@ -1,0 +1,21 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(readxl)
+DF <- read_excel("bankdata.xlsx")
+sapply(DF, class)
+
+cols <- c(2:14)
+
+DF[cols] <- sapply(DF[cols],as.numeric)
+
+```
+
+```{r}
+pivot <- DF %>% group_by(Year) %>% summarise(vlere = sum(Loans_net))
+```
